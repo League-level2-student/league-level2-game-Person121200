@@ -1,4 +1,4 @@
-import java.awt.Dimension;
+Timport java.awt.Dimension;
 import java.awt.Image;
 
 import javax.imageio.ImageIO;
