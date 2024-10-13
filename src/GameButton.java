@@ -7,13 +7,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class GameButton extends JButton {
-	int score;
 	int width;
 	int height;
 	String name;
 	Image image;
-
-	GameButton() {
+	GamePanel panel;
+	GameButton(GamePanel panel) {
+		this.panel = panel;
 	}
 
 	public void setup() {

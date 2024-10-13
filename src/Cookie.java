@@ -11,8 +11,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Cookie extends GameButton implements ActionListener {
-	Cookie() {
-		
+	public static int score;
+
+	Cookie(GamePanel panel) {
+		super(panel);
+		score = 0;
 		width = 400;
 		height = 361;
 		name = "Cookie.png";
@@ -22,14 +25,15 @@ public class Cookie extends GameButton implements ActionListener {
 	}
 
 	public void update() {
-
+		panel.update();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JButton buttonPressed = (JButton) arg0.getSource();
 		if (arg0.getSource() == buttonPressed) {
-			score+=1;
+			score += 1;
+			update();
 		}
 	}
 }

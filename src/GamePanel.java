@@ -15,17 +15,23 @@ import javax.swing.border.Border;
 import javax.swing.border.Border;
 
 public class GamePanel implements ActionListener {
-	int score;
 	JFrame frame;
 	JPanel cookiePanel;
 	JPanel bottom;
 	JPanel labels;
 	JLabel scores;
-	JPanel holder;
+	JPanel shopHolder;
+	JPanel topShop;
+	JPanel centralShop;
+	JPanel bottomShop;
+	JLabel shopText;
+	int backdrop;
+	JPanel cookieHolder;
 	int cookieX;
 	int cookieY;
 	Cookie cookie;
-	Shop shop;
+	ExitShop exitShop;
+	EnterShop shop;
 
 	GamePanel() {
 
@@ -33,40 +39,76 @@ public class GamePanel implements ActionListener {
 	}
 
 	public void setUp() {
-		drawGameState();
+		// Shop Stuff
+		frame = new JFrame("Cookie Clicker");
+		shopHolder = new JPanel();
+		topShop = new JPanel();
+		centralShop = new JPanel();
+		bottomShop = new JPanel();
+		shopText = new JLabel("Shop");
+		exitShop = new ExitShop(this);
+		bottomShop.add(exitShop);
+		shopHolder.setBackground(Color.CYAN);
+		topShop.setBackground(Color.CYAN);
+		centralShop.setBackground(Color.CYAN);
+		bottomShop.setBackground(Color.CYAN);
+		shopText.setFont(new Font("Arial", Font.PLAIN, 24));
+		
+		shopHolder.setLayout(new BoxLayout(shopHolder, BoxLayout.Y_AXIS));
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(Runner.WIDTH, Runner.HEIGHT);
-		frame.setVisible(true);
-	}
+		topShop.add(shopText);
+		shopHolder.add(topShop);
+		shopHolder.add(centralShop);
+		shopHolder.add(bottomShop);
 
-	public void drawGameState() {
-		frame = new JFrame();
+		// CookieStuff
 		cookiePanel = new JPanel();
-		holder = new JPanel();
+		cookieHolder = new JPanel();
 		bottom = new JPanel();
 		labels = new JPanel();
-		cookie = new Cookie();
-		score = 0;
-		scores = new JLabel("Cookies: "+score);
-		shop = new Shop();
-		scores.setFont(new Font("skibdi", Font.PLAIN, 24));
-		holder.setBackground(Color.CYAN);
+		cookie = new Cookie(this);
+		scores = new JLabel("Cookies: " + Cookie.score);
+		shop = new EnterShop(this);
+		scores.setFont(new Font("skibdi", Font.PLAIN, 36));
+		cookieHolder.setBackground(Color.CYAN);
 		cookiePanel.setBackground(Color.CYAN);
 		labels.setBackground(Color.CYAN);
 		bottom.setBackground(Color.CYAN);
 		cookiePanel.add(cookie);
 		bottom.add(shop);
 		labels.add(scores);
-		holder.setLayout(new BoxLayout(holder, BoxLayout.Y_AXIS));
-		holder.add(cookiePanel);
-		holder.add(labels);
-		holder.add(bottom);
-		frame.add(holder);
+		cookieHolder.setLayout(new BoxLayout(cookieHolder, BoxLayout.Y_AXIS));
+		cookieHolder.add(cookiePanel);
+		cookieHolder.add(labels);
+		cookieHolder.add(bottom);
+		frame.add(cookieHolder);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(Runner.WIDTH, Runner.HEIGHT);
+		frame.setVisible(true);
+
+	}
+
+	public void drawGameState() {
+		if(backdrop ==0) {
+			drawCookiePanel();
+		}
+		if(backdrop == 1) {
+			drawShopPanel();
+		}
+
+	}
+
+	public void drawShopPanel() {
+		frame.remove(cookieHolder);
+		frame.add(shopHolder);
+	}
+	public void drawCookiePanel() {
+		frame.remove(shopHolder);
+		frame.add(cookieHolder);
 	}
 
 	public void update() {
-
+		scores.setText("Cookies: " + Cookie.score);
 	}
 
 	@Override
