@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.Border;
 
@@ -23,11 +24,13 @@ public class GamePanel implements ActionListener {
 	JPanel shopHolder;
 	JPanel topShop;
 	JPanel centralShop;
+	Cursor cursor;
 	JPanel bottomShop;
 	JLabel shopText;
 	int backdrop;
 	JPanel cookieHolder;
 	int cookieX;
+	JPanel cursorPanel;
 	int cookieY;
 	Cookie cookie;
 	ExitShop exitShop;
@@ -43,7 +46,11 @@ public class GamePanel implements ActionListener {
 		frame = new JFrame("Cookie Clicker");
 		shopHolder = new JPanel();
 		topShop = new JPanel();
+		cursor = new Cursor(this);
 		centralShop = new JPanel();
+		cursorPanel = new JPanel();
+		cursorPanel.add(cursor);
+		centralShop.add(cursorPanel);
 		bottomShop = new JPanel();
 		shopText = new JLabel("Shop");
 		exitShop = new ExitShop(this);
@@ -91,9 +98,13 @@ public class GamePanel implements ActionListener {
 	public void drawGameState() {
 		if(backdrop ==0) {
 			drawCookiePanel();
+			SwingUtilities.updateComponentTreeUI(frame);
+
 		}
 		if(backdrop == 1) {
 			drawShopPanel();
+			SwingUtilities.updateComponentTreeUI(frame);
+
 		}
 
 	}

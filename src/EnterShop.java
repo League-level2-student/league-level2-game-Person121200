@@ -26,6 +26,7 @@ public class EnterShop extends GameButton implements ActionListener {
 		if (e.getSource() == buttonPressed) {
 			panel.backdrop=1;
 			panel.drawGameState();
+			
 		}
 	}
 
