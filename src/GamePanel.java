@@ -24,7 +24,6 @@ public class GamePanel implements ActionListener {
 	JPanel shopHolder;
 	JPanel topShop;
 	JPanel centralShop;
-	Cursor cursor;
 	JPanel bottomShop;
 	JLabel shopText;
 	int backdrop;
@@ -46,10 +45,8 @@ public class GamePanel implements ActionListener {
 		frame = new JFrame("Cookie Clicker");
 		shopHolder = new JPanel();
 		topShop = new JPanel();
-		cursor = new Cursor(this);
 		centralShop = new JPanel();
 		cursorPanel = new JPanel();
-		cursorPanel.add(cursor);
 		centralShop.add(cursorPanel);
 		bottomShop = new JPanel();
 		shopText = new JLabel("Shop");
