@@ -1,5 +1,7 @@
 import java.awt.Image;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -7,12 +9,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class UpgradeButton extends GameButton{
-	UpgradeButton(GamePanel panel, String text, int price) {
-		super(panel);
-		width = 90;
-		height = 66;
+public class UpgradeButton extends GameButton implements ActionListener{
+	UpgradeButton(String text, int price) {
+		super();
+		width = 500;
+		height = 500;
 		name = "buttonOutline";
+		setText(text + "\n" + price);
+		addActionListener(this);
+		setup();
+		draw();
 
 		
 	}
@@ -21,13 +27,23 @@ public class UpgradeButton extends GameButton{
 	public void update(){
 		
 	}
-	public void draw() {
-		try {
-			image = ImageIO.read(getClass().getResource(name));
-			setIcon(new ImageIcon(image));
+//	public void draw() {
+//		super.draw();
+//		try {
+//			image = ImageIO.read(getClass().getResource(name));
+//			setIcon(new ImageIcon(image));
+//
+//		} catch (Exception ex) {
+//			System.out.println(ex);
+//		}
+//	}
 
-		} catch (Exception ex) {
-			System.out.println(ex);
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		JButton buttonPressed = (JButton) arg0.getSource();		
+		if(arg0.getSource() == buttonPressed) {
+			
 		}
 	}
 

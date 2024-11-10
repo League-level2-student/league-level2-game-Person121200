@@ -10,16 +10,17 @@ public class UpgradeIcon extends JLabel{
 	String name;
 	Image image;
 	
-	UpgradeIcon(String hi){
-		
+	UpgradeIcon(String name){
+		this.name = name;
 		
 	}
 	public void draw() {
 		try {
-			new ImageIcon(ImageIO.read(getClass().getResource("CursorHand")));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			image = ImageIO.read(getClass().getResource(name));
+			setIcon(new ImageIcon(image));
+
+		} catch (Exception ex) {
+			System.out.println(ex);
 		}
 	}
 }

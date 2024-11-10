@@ -11,9 +11,8 @@ public class GameButton extends JButton {
 	int height;
 	String name;
 	Image image;
-	GamePanel panel;
-	GameButton(GamePanel panel) {
-		this.panel = panel;
+	GameButton() {
+		
 	}
 
 	public void setup() {

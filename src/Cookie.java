@@ -14,7 +14,7 @@ public class Cookie extends GameButton implements ActionListener {
 	public static int score;
 
 	Cookie(GamePanel panel) {
-		super(panel);
+		super();
 		score = 0;
 		width = 400;
 		height = 361;
@@ -25,7 +25,7 @@ public class Cookie extends GameButton implements ActionListener {
 	}
 
 	public void update() {
-		panel.update();
+		GamePanel.currentPanel.update();
 	}
 
 	@Override

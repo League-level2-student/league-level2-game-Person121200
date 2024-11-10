@@ -6,7 +6,7 @@ import javax.swing.JButton;
 public class ExitShop extends GameButton implements ActionListener {
 	
 	ExitShop(GamePanel panel) {
-		super(panel);
+		super();
 		width = 100;
 		height = 59;
 		name = "shop.png";
@@ -23,8 +23,8 @@ public class ExitShop extends GameButton implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		JButton buttonPressed = (JButton) arg0.getSource();
 		if(arg0.getSource() == buttonPressed) {
-			panel.backdrop = 0;
-			panel.drawGameState();
+			GamePanel.currentPanel.backdrop = 0;
+			GamePanel.currentPanel.drawGameState();
 		}
 
 	}

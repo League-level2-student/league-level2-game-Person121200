@@ -16,6 +16,7 @@ import javax.swing.border.Border;
 import javax.swing.border.Border;
 
 public class GamePanel implements ActionListener {
+	public static GamePanel currentPanel;
 	JFrame frame;
 	JPanel cookiePanel;
 	JPanel bottom;
@@ -26,6 +27,7 @@ public class GamePanel implements ActionListener {
 	JPanel centralShop;
 	JPanel bottomShop;
 	JLabel shopText;
+	UpgradeObject cursor;
 	int backdrop;
 	JPanel cookieHolder;
 	int cookieX;
@@ -36,16 +38,20 @@ public class GamePanel implements ActionListener {
 	EnterShop shop;
 
 	GamePanel() {
-
+		currentPanel = this;
 		setUp();
 	}
 
 	public void setUp() {
 		// Shop Stuff
+		//centralshop = where all ugrades(buttons) are
 		frame = new JFrame("Cookie Clicker");
+		cursor = new UpgradeObject("Cursor.png", 1);
 		shopHolder = new JPanel();
 		topShop = new JPanel();
 		centralShop = new JPanel();
+		centralShop.add(cursor);
+
 		cursorPanel = new JPanel();
 		centralShop.add(cursorPanel);
 		bottomShop = new JPanel();
@@ -58,8 +64,9 @@ public class GamePanel implements ActionListener {
 		bottomShop.setBackground(Color.CYAN);
 		shopText.setFont(new Font("Arial", Font.PLAIN, 24));
 		
+		
 		shopHolder.setLayout(new BoxLayout(shopHolder, BoxLayout.Y_AXIS));
-
+		
 		topShop.add(shopText);
 		shopHolder.add(topShop);
 		shopHolder.add(centralShop);
