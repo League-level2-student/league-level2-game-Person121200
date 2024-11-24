@@ -13,8 +13,12 @@ public class UpgradeObject extends JPanel{
 		upgradeButton = new UpgradeButton(name, price);
 		upgradeIcon = new UpgradeIcon(name);
 		buttonPanel.add(upgradeButton);
-		buttonPanel.add(upgradeIcon);
-		
+		buttonPanel.add(upgradeIcon);		
 		
 	}
+	public void draw() {
+		upgradeButton.draw();
+		upgradeIcon.draw();
+	}
+	
 }

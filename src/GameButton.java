@@ -25,11 +25,13 @@ public class GameButton extends JButton {
 	}
 
 	public void draw() {
+		System.out.println("printed");
 		try {
 			image = ImageIO.read(getClass().getResource(name));
 			setIcon(new ImageIcon(image));
 
 		} catch (Exception ex) {
+			System.out.println("hello");
 			System.out.println(ex);
 		}
 	}

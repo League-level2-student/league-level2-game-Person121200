@@ -12,11 +12,13 @@ import javax.swing.JPanel;
 public class UpgradeButton extends GameButton implements ActionListener{
 	UpgradeButton(String text, int price) {
 		super();
+
 		width = 500;
 		height = 500;
-		name = "buttonOutline";
+		name = "buttonOutline.png";
 		setText(text + "\n" + price);
 		addActionListener(this);
+		setLayout(null);
 		setup();
 		draw();
 

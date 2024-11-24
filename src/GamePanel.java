@@ -110,6 +110,7 @@ public class GamePanel implements ActionListener {
 			SwingUtilities.updateComponentTreeUI(frame);
 
 		}
+		cursor.draw();
 
 	}
 
