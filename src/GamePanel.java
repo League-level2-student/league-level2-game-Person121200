@@ -46,7 +46,7 @@ public class GamePanel implements ActionListener {
 		// Shop Stuff
 		//centralshop = where all ugrades(buttons) are
 		frame = new JFrame("Cookie Clicker");
-		cursor = new UpgradeObject("Cursor.png", 1);
+		cursor = new UpgradeObject("Cursor.png","cursor", 1);
 		shopHolder = new JPanel();
 		topShop = new JPanel();
 		centralShop = new JPanel();

@@ -1,23 +1,27 @@
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class UpgradeObject extends JPanel{
-	JPanel buttonPanel;
-	UpgradeButton upgradeButton;
+public class UpgradeObject extends JButton{
+	JLabel upgradeText;
 	UpgradeIcon upgradeIcon;
 	String name;
+	String upgradeName;
+	
 	int price;
-	UpgradeObject(String name, int price){
+	UpgradeObject(String name, String upgradeName, int price){
 		this.name = name;
 		this.price = price;
-		buttonPanel = new JPanel();
-		upgradeButton = new UpgradeButton(name, price);
+		this.upgradeName = upgradeName;
 		upgradeIcon = new UpgradeIcon(name);
-		buttonPanel.add(upgradeButton);
-		buttonPanel.add(upgradeIcon);		
+		setSize(50, 50);
+		upgradeText = new JLabel(upgradeName + "\n" + price);
+		add(upgradeIcon);
+		add(upgradeText);
+
 		
 	}
 	public void draw() {
-		upgradeButton.draw();
 		upgradeIcon.draw();
 	}
 	
