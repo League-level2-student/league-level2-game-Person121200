@@ -11,11 +11,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Cookie extends GameButton implements ActionListener {
-	public static int score;
+	public static double score;
+	public static double change;
 
 	Cookie(GamePanel panel) {
 		super();
 		score = 0;
+		change = 1;
 		width = 400;
 		height = 361;
 		name = "Cookie.png";
@@ -32,7 +34,7 @@ public class Cookie extends GameButton implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		JButton buttonPressed = (JButton) arg0.getSource();
 		if (arg0.getSource() == buttonPressed) {
-			score += 1;
+			score += change;
 			update();
 		}
 	}
