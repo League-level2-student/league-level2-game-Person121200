@@ -22,7 +22,8 @@ public class UpgradeObject extends JButton implements ActionListener{
 		upgradeIcon = new UpgradeIcon(name);
 		upgradeText = new JLabel(upgradeName + "\n" + price);
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-
+		
+		addActionListener(this);
 		add(upgradeIcon);
 		add(upgradeText);
 
@@ -32,7 +33,8 @@ public class UpgradeObject extends JButton implements ActionListener{
 		if(Cookie.score < price) {
 			setBackground(Color.RED);
 			setOpaque(true);
-			removeActionListener(this);
+			SwingUtilities.updateComponentTreeUI(f);
+
 
 			
 		}
@@ -44,15 +46,29 @@ public class UpgradeObject extends JButton implements ActionListener{
 		upgradeIcon.draw();
 
 	}
+	public void subtractPrice() {
+		Cookie.score=Cookie.score-price;
+
+	}
+	public void update() {
+		GamePanel.currentPanel.update();
+	}
+	public void change(){
+		price = price*4;
+		Cookie.change = Cookie.change*2;
+
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		JButton buttonPressed = (JButton) arg0.getSource();
-		if(buttonPressed == arg0.getSource()) {
-			
-				Cookie.score=Cookie.score-price;
-				Cookie.change = Cookie.change*2;
-				price = price*4;
+		if(this == arg0.getSource()) {
+			if(Cookie.score >= price) {
+				subtractPrice();
+				change();	
+				update();
+			}
+
+
 			}
 
 			

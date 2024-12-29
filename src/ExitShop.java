@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class ExitShop extends GameButton implements ActionListener {
-	
+
 	ExitShop(GamePanel panel) {
 		super();
 		width = 100;
@@ -16,7 +16,7 @@ public class ExitShop extends GameButton implements ActionListener {
 	}
 
 	public void update() {
-
+		
 	}
 
 	@Override
