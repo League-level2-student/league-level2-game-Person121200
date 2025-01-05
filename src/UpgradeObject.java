@@ -8,16 +8,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class UpgradeObject extends JButton implements ActionListener{
+public class UpgradeObject extends JButton implements ActionListener {
 	JLabel upgradeText;
 	UpgradeIcon upgradeIcon;
 	String name;
 	String upgradeName;
-	
 	int price;
-	UpgradeObject(String name, String upgradeName, int price){
+	int multiplier;
+
+	UpgradeObject(String name, String upgradeName, int price, int multiplier){
 		this.name = name;
 		this.price = price;
+		this.multiplier = multiplier;
 		this.upgradeName = upgradeName;
 		upgradeIcon = new UpgradeIcon(name);
 		upgradeText = new JLabel(upgradeName + "\n" + price);
@@ -29,16 +31,13 @@ public class UpgradeObject extends JButton implements ActionListener{
 
 		
 	}
+
 	public void draw() {
-		if(Cookie.score < price) {
+		if (Cookie.score < price) {
 			setBackground(Color.RED);
 			setOpaque(true);
-			SwingUtilities.updateComponentTreeUI(f);
 
-
-			
-		}
-		else {
+		} else {
 			setBackground(Color.GREEN);
 			setOpaque(true);
 		}
@@ -46,38 +45,35 @@ public class UpgradeObject extends JButton implements ActionListener{
 		upgradeIcon.draw();
 
 	}
+
 	public void subtractPrice() {
-		Cookie.score=Cookie.score-price;
+		Cookie.score = Cookie.score - price;
 
 	}
+
 	public void update() {
 		GamePanel.currentPanel.update();
+		upgradeText.setText(upgradeName + "\n" + price);
 	}
-	public void change(){
-		price = price*4;
-		Cookie.change = Cookie.change*2;
+
+	public void change() {
+		price = price * multiplier;
 
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(this == arg0.getSource()) {
-			if(Cookie.score >= price) {
+		if (this == arg0.getSource()) {
+			if (Cookie.score >= price) {
 				subtractPrice();
-				change();	
+				change();
 				update();
+				GamePanel.currentPanel.drawGameState();
+
 			}
 
-
-			}
-
-			
-
-//			if(Cookie.change >= 100000) {
-//				upgradeText = new JLabel("MAXED OUT");
-//				Cookie.change =Cookie.change*1;
-			}
 		}
-	
-	
+
+	}
+}
 

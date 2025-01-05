@@ -46,14 +46,13 @@ public class GamePanel implements ActionListener {
 		// Shop Stuff
 		//centralshop = where all ugrades(buttons) are
 		frame = new JFrame("Cookie Clicker");
-		cursor = new UpgradeObject("Cursor.png","cursor", 1);
+		cursor = new CursorX2("Cursor.png","cursor", 1, 4);
 		shopHolder = new JPanel();
 		topShop = new JPanel();
 		centralShop = new JPanel();
 		centralShop.add(cursor);
 
-		cursorPanel = new JPanel();
-		centralShop.add(cursorPanel);
+
 		bottomShop = new JPanel();
 		shopText = new JLabel("Shop");
 		exitShop = new ExitShop(this);
@@ -125,6 +124,8 @@ public class GamePanel implements ActionListener {
 
 	public void update() {
 		scores.setText("Cookies: " + Cookie.score);
+
+
 	}
 
 	@Override

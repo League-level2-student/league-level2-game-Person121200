@@ -13,6 +13,7 @@ import javax.swing.JButton;
 public class Cookie extends GameButton implements ActionListener {
 	public static double score;
 	public static double change;
+	public static double cps;
 
 	Cookie(GamePanel panel) {
 		super();
@@ -30,6 +31,7 @@ public class Cookie extends GameButton implements ActionListener {
 		GamePanel.currentPanel.update();
 	}
 
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JButton buttonPressed = (JButton) arg0.getSource();
@@ -37,5 +39,6 @@ public class Cookie extends GameButton implements ActionListener {
 			score += change;
 			update();
 		}
+		
 	}
 }
