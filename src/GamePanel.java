@@ -26,6 +26,7 @@ public class GamePanel implements ActionListener {
 	JPanel topShop;
 	JPanel centralShop;
 	JPanel bottomShop;
+	CpsUpgrades Grandma;
 	JLabel shopText;
 	UpgradeObject cursor;
 	int backdrop;
@@ -47,10 +48,12 @@ public class GamePanel implements ActionListener {
 		//centralshop = where all ugrades(buttons) are
 		frame = new JFrame("Cookie Clicker");
 		cursor = new CursorX2("Cursor.png","cursor", 1, 4);
+		Grandma = new CpsUpgrades("Grandma.png", "grandma", 10, (int) 1.4, 5);
 		shopHolder = new JPanel();
 		topShop = new JPanel();
 		centralShop = new JPanel();
 		centralShop.add(cursor);
+		centralShop.add(Grandma);
 
 
 		bottomShop = new JPanel();
