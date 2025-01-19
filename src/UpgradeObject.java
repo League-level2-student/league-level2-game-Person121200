@@ -13,10 +13,10 @@ public class UpgradeObject extends JButton implements ActionListener {
 	UpgradeIcon upgradeIcon;
 	String name;
 	String upgradeName;
-	int price;
-	int multiplier;
+	double price;
+	double multiplier;
 
-	UpgradeObject(String name, String upgradeName, int price, int multiplier){
+	UpgradeObject(String name, String upgradeName, double price, double multiplier){
 		this.name = name;
 		this.price = price;
 		this.multiplier = multiplier;

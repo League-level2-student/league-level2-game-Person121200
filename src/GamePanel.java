@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,12 +22,14 @@ public class GamePanel implements ActionListener {
 	JPanel cookiePanel;
 	JPanel bottom;
 	JPanel labels;
+	ArrayList <UpgradeObject> allUpgrades = new ArrayList<>(); 
 	JLabel scores;
 	JPanel shopHolder;
+	JLabel totalcps;
 	JPanel topShop;
 	JPanel centralShop;
 	JPanel bottomShop;
-	CpsUpgrades Grandma;
+	CpsUpgrades grandma;
 	JLabel shopText;
 	UpgradeObject cursor;
 	int backdrop;
@@ -48,15 +51,18 @@ public class GamePanel implements ActionListener {
 		//centralshop = where all ugrades(buttons) are
 		frame = new JFrame("Cookie Clicker");
 		cursor = new CursorX2("Cursor.png","cursor", 1, 4);
-		Grandma = new CpsUpgrades("Grandma.png", "grandma", 10, (int) 1.4, 5);
+		grandma = new CpsUpgrades("Grandma.png", "grandma", 10, 1.4, 10);
+		allUpgrades.add(grandma);
+		allUpgrades.add(cursor);
 		shopHolder = new JPanel();
 		topShop = new JPanel();
 		centralShop = new JPanel();
 		centralShop.add(cursor);
-		centralShop.add(Grandma);
+		centralShop.add(grandma);
 
 
 		bottomShop = new JPanel();
+		totalcps = new JLabel();
 		shopText = new JLabel("Shop");
 		exitShop = new ExitShop(this);
 		bottomShop.add(exitShop);
@@ -83,12 +89,14 @@ public class GamePanel implements ActionListener {
 		scores = new JLabel("Cookies: " + Cookie.score);
 		shop = new EnterShop(this);
 		scores.setFont(new Font("skibdi", Font.PLAIN, 36));
+		totalcps.setFont(new Font("Arial", Font.PLAIN, 20));
 		cookieHolder.setBackground(Color.CYAN);
 		cookiePanel.setBackground(Color.CYAN);
 		labels.setBackground(Color.CYAN);
 		bottom.setBackground(Color.CYAN);
 		cookiePanel.add(cookie);
 		bottom.add(shop);
+		labels.add(totalcps);
 		labels.add(scores);
 		cookieHolder.setLayout(new BoxLayout(cookieHolder, BoxLayout.Y_AXIS));
 		cookieHolder.add(cookiePanel);
@@ -112,7 +120,10 @@ public class GamePanel implements ActionListener {
 			SwingUtilities.updateComponentTreeUI(frame);
 
 		}
-		cursor.draw();
+		for(int i = 0; i< allUpgrades.size(); i++) {
+			allUpgrades.get(i).draw();
+		}
+		
 
 	}
 
@@ -126,10 +137,18 @@ public class GamePanel implements ActionListener {
 	}
 
 	public void update() {
-		scores.setText("Cookies: " + Cookie.score);
+		if(scores != null) {
+			scores.setText("Cookies: " + Cookie.score);
+		}
+		if(totalcps != null) {
+			totalcps.setText("Total CPS: " + Cookie.cps);
+
+		}
+	
 
 
 	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

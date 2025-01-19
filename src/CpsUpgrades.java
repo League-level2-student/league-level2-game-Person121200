@@ -1,35 +1,49 @@
 import java.awt.event.ActionEvent;
 import java.util.TimerTask;
 
+import javax.swing.SwingUtilities;
+
 import java.util.Timer;
 public class CpsUpgrades extends UpgradeObject {
 	Timer timer;
 	TimerTask task;
-	int cps;
-	CpsUpgrades(String name, String upgradeName, int price, int multiplier, int cps) {
+	double totalcps = 0;
+	double cps;
+	
+	CpsUpgrades(String name, String upgradeName, int price, double multiplier, int cps) {
 		super(name, upgradeName, price, multiplier);
 		this.cps = cps;
-		tick();
+		startTimer();
+		
 	}
 
 	public void change() {
 		price = price * multiplier;
-		this.cps += cps;
+		Cookie.cps += cps;
+		totalcps+=cps;
 	}
 
-	public void tick() {
+	public void startTimer() {
 		task = new TimerTask() {
 			public void run() {
-				Cookie.score+=cps;
+				if(GamePanel.currentPanel != null) {
+					Cookie.score+=totalcps;
+					GamePanel.currentPanel.update();
+
+				}
+
 				System.out.println("anyword");
+
+
 			}
 		};
 		timer = new Timer();
+		timer.schedule(task, 0, 1000);
+
 		
 	}
 	public void actionPerformed(ActionEvent arg0) {
 		if (this == arg0.getSource()) {
-			timer.scheduleAtFixedRate(task, 0, 1000);
 			if (Cookie.score >= price) {
 				subtractPrice();
 				change();
