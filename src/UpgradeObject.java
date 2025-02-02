@@ -53,7 +53,10 @@ public class UpgradeObject extends JButton implements ActionListener {
 
 	public void update() {
 		GamePanel.currentPanel.update();
-		upgradeText.setText(upgradeName + "\n" + price);
+		
+		upgradeText.setText(upgradeName + "\n" + GamePanel.currentPanel.round(price));
+
+
 	}
 
 	public void change() {

@@ -30,6 +30,14 @@ public class GamePanel implements ActionListener {
 	JPanel centralShop;
 	JPanel bottomShop;
 	CpsUpgrades grandma;
+	CpsUpgrades factory;
+	JLabel clickpower;
+	CpsUpgrades mine;
+	CpsUpgrades graveyard;
+	CpsUpgrades alchemy;
+	CpsUpgrades antimatter;
+	CpsUpgrades time;
+	
 	JLabel shopText;
 	UpgradeObject cursor;
 	int backdrop;
@@ -51,14 +59,35 @@ public class GamePanel implements ActionListener {
 		//centralshop = where all ugrades(buttons) are
 		frame = new JFrame("Cookie Clicker");
 		cursor = new CursorX2("Cursor.png","cursor", 1, 4);
-		grandma = new CpsUpgrades("Grandma.png", "grandma", 10, 1.4, 10);
-		allUpgrades.add(grandma);
+		grandma = new CpsUpgrades("Grandma.png", "grandma", 10, 1.4, 5);
+		factory = new CpsUpgrades("Factory.png", "factory", 50, 1.4, 10);
+		mine = new CpsUpgrades("Mine.png", "mine", 150, 1.4, 25);
+		graveyard = new CpsUpgrades("Grave.png", "graveyard", 10000, 1.4, 100);
+		alchemy = new CpsUpgrades("Alchemy.png", "alchemy lab", 100000, 1.4, 15000);
+		antimatter = new CpsUpgrades("Antimatter.png", "antimatter cookiepactor", 1000000, 1.4, 100000);
+		time = new CpsUpgrades("Time.png", "time machine", 10000000, 2, 1000000);
+
+
+
 		allUpgrades.add(cursor);
+		allUpgrades.add(grandma);
+		allUpgrades.add(factory);
+		allUpgrades.add(mine);
+		allUpgrades.add(graveyard);
+		allUpgrades.add(alchemy);
+		allUpgrades.add(antimatter);
+		allUpgrades.add(time);
+
+
+
+
+		
 		shopHolder = new JPanel();
 		topShop = new JPanel();
 		centralShop = new JPanel();
-		centralShop.add(cursor);
-		centralShop.add(grandma);
+		for(int i = 0; i < allUpgrades.size(); i++) {
+			centralShop.add(allUpgrades.get(i));
+		}
 
 
 		bottomShop = new JPanel();
@@ -86,10 +115,13 @@ public class GamePanel implements ActionListener {
 		bottom = new JPanel();
 		labels = new JPanel();
 		cookie = new Cookie(this);
-		scores = new JLabel("Cookies: " + Cookie.score);
+		scores = new JLabel("Cookies: " + GamePanel.currentPanel.round(Cookie.score));
+		clickpower = new JLabel("Click Power: " + GamePanel.currentPanel.round(Cookie.change));
+		totalcps = new JLabel("Total CPS: " + GamePanel.currentPanel.round(Cookie.cps));
 		shop = new EnterShop(this);
 		scores.setFont(new Font("skibdi", Font.PLAIN, 36));
 		totalcps.setFont(new Font("Arial", Font.PLAIN, 20));
+		clickpower.setFont(new Font("Arial", Font.PLAIN, 20));
 		cookieHolder.setBackground(Color.CYAN);
 		cookiePanel.setBackground(Color.CYAN);
 		labels.setBackground(Color.CYAN);
@@ -97,6 +129,7 @@ public class GamePanel implements ActionListener {
 		cookiePanel.add(cookie);
 		bottom.add(shop);
 		labels.add(totalcps);
+		labels.add(clickpower);
 		labels.add(scores);
 		cookieHolder.setLayout(new BoxLayout(cookieHolder, BoxLayout.Y_AXIS));
 		cookieHolder.add(cookiePanel);
@@ -138,6 +171,9 @@ public class GamePanel implements ActionListener {
 
 	public void update() {
 		if(scores != null) {
+			clickpower.setText("Click Power: " + Cookie.change);
+		}
+		if(scores != null) {
 			scores.setText("Cookies: " + Cookie.score);
 		}
 		if(totalcps != null) {
@@ -147,6 +183,13 @@ public class GamePanel implements ActionListener {
 	
 
 
+	}
+	public double round(double price) {
+		price=price*10;
+		price = Math.round(price);
+		price = price/10;
+		return price;
+		
 	}
 
 

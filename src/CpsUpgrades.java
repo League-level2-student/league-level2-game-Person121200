@@ -13,6 +13,7 @@ public class CpsUpgrades extends UpgradeObject {
 	CpsUpgrades(String name, String upgradeName, int price, double multiplier, int cps) {
 		super(name, upgradeName, price, multiplier);
 		this.cps = cps;
+		
 		startTimer();
 		
 	}
@@ -32,7 +33,6 @@ public class CpsUpgrades extends UpgradeObject {
 
 				}
 
-				System.out.println("anyword");
 
 
 			}
